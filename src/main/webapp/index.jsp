@@ -1,155 +1,628 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sistema de Repositorio Académico UPLA">
-  <title>Repositorio Académico | UPLA</title>
+    <meta charset="UTF-8">
 
-  <!-- FontAwesome para iconos de dashboard -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Fuente Inter para acabado profesional -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/styles.css">
+    <meta name="description"
+          content="Repositorio Académico de Ingeniería de Sistemas y Computación - Universidad Peruana Los Andes">
+
+    <title>
+        Repositorio Académico | UPLA
+    </title>
+
+    <!-- =====================================================
+         FUENTE INTER
+         ===================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =====================================================
+         CSS PRINCIPAL
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="${pageContext.request.contextPath}/css/styles.css?v=20260922">
+
 </head>
+
+
 <body>
 
-  <div class="app-layout">
 
-    <!-- SIDEBAR NAVEGACIÓN -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <a class="brand" href="#inicio" data-route="inicio">
-          <div class="brand-mark">U</div>
-          <div class="brand-info">
-            <strong>UPLA</strong>
-            <span>Repositorio Académico</span>
-          </div>
-        </a>
-        <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
-      </div>
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
 
-      <div class="sidebar-user-card">
-        <div class="user-avatar">
-          <i class="fa-solid fa-user-graduate"></i>
+<aside
+    class="sidebar"
+    id="sidebar">
+
+
+    <!-- LOGO / MARCA -->
+
+    <div class="sidebar-brand">
+
+     <a
+    href="#inicio"
+    class="brand-logo"
+    aria-label="Inicio">
+
+    <img
+        src="${pageContext.request.contextPath}/img/logo-upla.png"
+        alt="Logo UPLA">
+
+</a>
+
+
+        <div class="brand-text">
+
+            <strong>
+                UPLA
+            </strong>
+
+            <small>
+                REPOSITORIO ACADÉMICO
+            </small>
+
         </div>
-        <div class="user-info">
-          <span class="user-name" id="userState">Invitado</span>
-          <span class="user-role">Ing. de Sistemas</span>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+         ===================================================== -->
+
+    <div class="sidebar-section">
+
+        <span class="sidebar-title">
+            PRINCIPAL
+        </span>
+
+
+        <nav
+            class="sidebar-nav"
+            id="mainNav">
+
+
+            <a
+                href="#inicio"
+                class="nav-item active"
+                data-route="inicio">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Inicio
+                </span>
+
+            </a>
+
+
+            <a
+                href="#semanas"
+                class="nav-item"
+                data-route="semanas">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>
+                    Semanas
+                </span>
+
+            </a>
+
+
+            <a
+                href="#actividades"
+                class="nav-item"
+                data-route="actividades">
+
+                <i class="fa-solid fa-list-check"></i>
+
+                <span>
+                    Actividades
+                </span>
+
+            </a>
+
+
+            <a
+                href="#archivos"
+                class="nav-item"
+                data-route="archivos">
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                <span>
+                    Archivos
+                </span>
+
+            </a>
+
+
+            <a
+                href="#perfil"
+                class="nav-item"
+                data-route="perfil">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <span>
+                    Perfil
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ADMINISTRACIÓN
+         ===================================================== -->
+
+    <div class="sidebar-section admin-link hidden">
+
+        <span class="sidebar-title">
+            ADMINISTRACIÓN
+        </span>
+
+
+        <div class="sidebar-nav">
+
+            <a
+                href="#administrar"
+                class="nav-item admin-link hidden"
+                data-route="administrar">
+
+                <i class="fa-solid fa-sliders"></i>
+
+                <span>
+                    Administrar
+                </span>
+
+            </a>
+
         </div>
-      </div>
 
-      <nav class="sidebar-nav main-nav" id="mainNav">
-        <div class="menu-label">PRINCIPAL</div>
-        <a href="#inicio" data-route="inicio" class="nav-link active">
-          <i class="fa-solid fa-chart-pie"></i>
-          <span>Inicio</span>
-        </a>
-        <a href="#semanas" data-route="semanas" class="nav-link">
-          <i class="fa-solid fa-calendar-week"></i>
-          <span>Semanas</span>
-        </a>
-        <a href="#actividades" data-route="actividades" class="nav-link">
-          <i class="fa-solid fa-list-check"></i>
-          <span>Actividades</span>
-        </a>
-        <a href="#perfil" data-route="perfil" class="nav-link">
-          <i class="fa-solid fa-address-card"></i>
-          <span>Perfil</span>
-        </a>
+    </div>
 
-        <div class="menu-label admin-link hidden">ADMINISTRACIÓN</div>
-        <a href="#administrar" data-route="administrar" class="nav-link admin-link hidden">
-          <i class="fa-solid fa-sliders"></i>
-          <span>Administrar</span>
-        </a>
-      </nav>
 
-      <div class="sidebar-footer">
-        <button id="loginTopBtn" class="top-btn btn-auth">
-          <i class="fa-solid fa-right-to-bracket"></i> <span>Iniciar sesión</span>
+
+    <!-- =====================================================
+         INFORMACIÓN DEL SISTEMA
+         ===================================================== -->
+
+    <div class="sidebar-info">
+
+        <div class="sidebar-info-icon">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+        </div>
+
+
+        <strong>
+            INGENIERÍA DE SISTEMAS
+        </strong>
+
+
+        <p>
+            Repositorio académico para organizar
+            trabajos, prácticas, actividades y
+            evidencias del ciclo académico.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         USUARIO
+         ===================================================== -->
+
+    <div class="sidebar-user">
+
+
+        <div
+            class="user-avatar"
+            id="sidebarInitials">
+
+            U
+
+        </div>
+
+
+        <div class="user-data">
+
+            <strong
+                id="sidebarUserName">
+
+                Invitado
+
+            </strong>
+
+
+            <small>
+
+                <span class="status-dot"></span>
+
+                <span id="sidebarStatus">
+                    Visitante
+                </span>
+
+            </small>
+
+        </div>
+
+
+        <button
+            id="logoutTopBtn"
+            class="logout-icon hidden"
+            type="button"
+            title="Cerrar sesión">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
         </button>
-        <button id="logoutTopBtn" class="top-btn btn-auth hidden">
-          <i class="fa-solid fa-right-from-bracket"></i> <span>Cerrar sesión</span>
-        </button>
-      </div>
-    </aside>
 
-    <!-- ÁREA PRINCIPAL -->
-    <div class="main-wrapper">
+    </div>
 
-      <!-- TOPBAR SUPERIOR -->
-      <header class="topbar">
+
+</aside>
+
+
+
+<!-- =========================================================
+     CONTENIDO PRINCIPAL
+     ========================================================= -->
+
+<div class="main-wrapper">
+
+
+    <!-- =====================================================
+         TOPBAR
+         ===================================================== -->
+
+    <header class="topbar">
+
+
         <div class="topbar-left">
-          <button class="mobile-toggle" id="btnToggleMobile">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-          <div class="topbar-title">
-            <h2>Sistema de Gestión Académica</h2>
-            <p>Universidad Peruana Los Andes — Facultad de Ingeniería</p>
-          </div>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Abrir menú">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div>
+
+                <span class="topbar-label">
+                    UNIVERSIDAD PERUANA LOS ANDES
+                </span>
+
+
+                <strong>
+                    Sistema de Gestión Académica
+                </strong>
+
+            </div>
+
         </div>
+
+
+
         <div class="topbar-right">
-          <div class="status-badge online">
-            <span class="dot"></span>
-            <span>Tomcat & Supabase Activo</span>
-          </div>
+
+
+            <!-- ESTADO -->
+
+            <div class="connection-status">
+
+                <span class="online-dot"></span>
+
+                <span>
+                    Tomcat + Supabase
+                </span>
+
+            </div>
+
+
+
+            <!-- USUARIO TOPBAR -->
+
+            <div class="top-user">
+
+
+                <div
+                    class="top-avatar"
+                    id="topInitials">
+
+                    U
+
+                </div>
+
+
+                <div>
+
+                    <strong
+                        id="userState">
+
+                        Invitado
+
+                    </strong>
+
+                    <small>
+                        Ingeniería de Sistemas
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LOGIN -->
+
+            <button
+                id="loginTopBtn"
+                class="login-button"
+                type="button">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>
+                    Iniciar sesión
+                </span>
+
+            </button>
+
+
         </div>
-      </header>
 
-      <!-- CONTENEDOR DINÁMICO SPA (DONDE JS RENDERIZA TODO) -->
-      <main id="app" class="content-body"></main>
+    </header>
 
-      <footer class="site-footer">
+
+
+    <!-- =====================================================
+         CONTENIDO DINÁMICO
+         app.js renderiza aquí
+         ===================================================== -->
+
+    <main id="app"></main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="site-footer">
+
+
         <div>
-          <strong>Mi Repositorio Académico UPLA</strong>
-          <span>Ingeniería de Sistemas y Computación</span>
+
+            <strong>
+                Mi Repositorio Académico UPLA
+            </strong>
+
+            <span>
+                Ingeniería de Sistemas y Computación
+            </span>
+
         </div>
-        <p>Aplicación JSP publicada con Tomcat y Supabase.</p>
-      </footer>
 
-    </div>
-  </div>
 
-  <!-- MODAL DE AUTENTICACIÓN (MANTIENE TUS IDS ORIGINALES) -->
-  <div id="authModal" class="modal">
+        <p>
+            JSP · Apache Tomcat · Supabase
+        </p>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL LOGIN
+     ========================================================= -->
+
+<div
+    id="authModal"
+    class="modal">
+
+
     <div class="modal-card">
-      <div class="modal-head">
-        <div>
-          <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Acceso Institucional</span>
-          <h2>Iniciar sesión</h2>
+
+
+        <div class="modal-head">
+
+
+            <div>
+
+                <span class="eyebrow">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    ACCESO AL SISTEMA
+
+                </span>
+
+
+                <h2>
+                    Iniciar sesión
+                </h2>
+
+
+                <p>
+                    Ingresa tus credenciales para administrar
+                    el repositorio académico.
+                </p>
+
+            </div>
+
+
+
+            <button
+                id="closeAuth"
+                class="close-btn"
+                type="button"
+                aria-label="Cerrar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
         </div>
-        <button id="closeAuth" class="close-btn">&times;</button>
-      </div>
 
-      <form id="loginForm" class="form-stack">
-        <div class="form-group">
-          <label for="loginEmail">Correo Electrónico</label>
-          <input id="loginEmail" type="email" required placeholder="correo@ejemplo.com" class="form-control">
-        </div>
 
-        <div class="form-group">
-          <label for="loginPassword">Contraseña</label>
-          <input id="loginPassword" type="password" required placeholder="Tu contraseña" class="form-control">
-        </div>
 
-        <button class="btn primary btn-block" type="submit">
-          <i class="fa-solid fa-key"></i> Ingresar al Sistema
-        </button>
-      </form>
+        <form
+            id="loginForm"
+            class="form-stack">
 
-      <p id="authMessage" class="form-message"></p>
+
+            <!-- EMAIL -->
+
+            <label>
+
+                Correo electrónico
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="correo@ejemplo.com"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+            </label>
+
+
+
+            <!-- PASSWORD -->
+
+            <label>
+
+                Contraseña
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Ingresa tu contraseña"
+                        autocomplete="current-password"
+                        required>
+
+                </div>
+
+            </label>
+
+
+
+            <!-- BOTÓN -->
+
+            <button
+                class="btn primary full-width"
+                type="submit">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Ingresar al sistema
+
+            </button>
+
+
+
+            <p
+                id="authMessage"
+                class="form-message">
+            </p>
+
+
+        </form>
+
+
     </div>
-  </div>
 
-  <!-- LIBRERÍAS Y SCRIPTS ORIGINALES -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="<%= request.getContextPath() %>/js/config.js"></script>
-  <script src="<%= request.getContextPath() %>/js/app.js"></script>
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+
+<!-- SUPABASE -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+
+<!-- CONFIGURACIÓN SUPABASE -->
+
+<script
+    src="${pageContext.request.contextPath}/js/config.js?v=20260922">
+</script>
+
+
+<!-- APLICACIÓN -->
+
+<script
+    src="${pageContext.request.contextPath}/js/app.js?v=20260922">
+</script>
+
 
 </body>
+
 </html>
